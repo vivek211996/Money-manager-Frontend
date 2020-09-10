@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+.captcha{
+    font-family: 'Monoton', cursive;
+
+}
+
+.backbutton{
+    background-color:grey;
+}
