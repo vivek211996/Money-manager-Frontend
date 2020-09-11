@@ -1,10 +1,13 @@
-import React from 'react';
+import React,{useState} from 'react'
 import{BrowserRouter as Router , Switch,Route,Link} from "react-router-dom";
 import './register.css'
+import Loading from './loading.js'
 
 function Register() {
+  const[loading,setLoading] = useState(false)
   const Reg = () =>
     {
+      setLoading(true);
       function postRequest(url, data) {
         return fetch(url, {
           credentials: 'same-origin', // 'include', default: 'omit'
@@ -29,11 +32,13 @@ function Register() {
       postRequest('https://money-manager21.herokuapp.com/register', {"Username":''+ a, "pwd":''+b})
     .then(data => console.log(data)) // Result from the `response.json()` call
     .catch(error => console.error(error))
+    setLoading(false);
       alert("registered, now you can login")
       
      
     }
     else{
+      setLoading(false);
       alert("pwds donot match")
      
     }
@@ -54,6 +59,7 @@ function Register() {
   <input type="password" placeholder="Re Enter Password" name="psw2" id ="pwd2" required></input>
       
   <button id = "signup" onClick={()=>(Reg())} >Register</button>
+  {loading === true ? <Loading /> :null}
    
 </div>
 
