@@ -1,11 +1,11 @@
-import React from 'react'
-
+import React,{useState} from 'react'
+import Loading from './loading.js'
 import './fpwd.css';
 import{BrowserRouter as Router , Switch,Route,Link} from "react-router-dom";
 
 function Forgotpwd() {
-  
-  //var button1 = document.getElementById('b1')
+  const[loading,setLoading] = useState(false)
+ 
 
 function generate () {
   
@@ -52,6 +52,7 @@ else{
 }
 const Reg2 = () =>
   {
+    setLoading(true);
     function postRequest(url, data) {
       return fetch(url, {
         credentials: 'same-origin', 
@@ -76,11 +77,13 @@ const Reg2 = () =>
     postRequest('https://money-manager21.herokuapp.com/register', {"Username":''+ a, "pwd":''+b})
   .then(data => console.log(data)) // Result from the `response.json()` call
   .catch(error => console.error(error))
+  setLoading(false);
     alert("pwd changed, now you can go back to home and login")
     
    
   }
   else{
+    setLoading(false);
     alert("pwds donot match")
    
   }
@@ -118,7 +121,7 @@ const Reg2 = () =>
         <input type="password" id="pwd2"></input>
         <br></br>
         <input type="button" value="RESET" id="b1" onClick={()=>(Reg2())} disabled ></input>
-        
+        {loading === true ? <Loading /> :null}
         </form>
         <ul>
 <li className="backbutton" ><Link to="/mainview">Back to home page</Link></li>  
