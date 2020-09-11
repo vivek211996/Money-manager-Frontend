@@ -12,16 +12,13 @@ import Monthlyview from'./views/monthlyview.js'
 import Yearlyview from'./views/yearlyview.js'
 import './index.css'
 import Viewchange from'./viewchange.js'
+import { Redirect } from 'react-router';
 
 
 
 
 const Homepage = () => {
-  function handlechange()
-{
-  document.getElementById("loginlink").innerHTML = ""
-}
-  
+
     return (
      
       <Router>
@@ -56,7 +53,8 @@ const Homepage = () => {
                    </switch>
           <br></br>
          
-          <h1><center><Link to="/mainview"  className="glow-on-hover" id="loginlink" onClick={handlechange}>Take me there</Link></center></h1>
+          <Redirect to="/mainview"/>
+
           </div>  
        
       </Router>
